@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bro Cahya | Trainer, Solver, Creator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-dark: #050505;
+            --accent-gold: #FFD400;
+            --text-main: #f5f5f5;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .hero-title span:hover {
+            color: var(--accent-gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Sections General */
+        section {
+            padding: 8rem 5%;
+        }
+
+        .section-header {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: #111;
+            padding: 2.5rem;
+            border-left: 4px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-left-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 3rem;
+            background: #0a0a0a;
+            border: 1px solid #222;
+            transition: border-color 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .port-meta {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent-gold);
+        }
+
+        .port-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: var(--bg-dark);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-grid, .portfolio-item {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .nav-links {
+                display: none; /* Add hamburger menu for production */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Bro Cahya.</div>
+        <div class="nav-links">
+            <a href="#about">Tentang</a>
+            <a href="#skills">Keahlian</a>
+            <a href="#portfolio">Karya</a>
+            <a href="#contact">Kontak</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 class="hero-title">
+            <span>Trainer.</span>
+            <span>Solver.</span>
+            <span style="color: #ffffff;">Creator.</span>
+        </h1>
+        <p class="hero-subtitle fade-in">
+            Mengubah kompleksitas menjadi kejelasan terukur. Menyelesaikan masalah struktural dan merancang narasi bisnis melalui pendekatan logis, sistematis, dan terintegrasi AI.
+        </p>
+        <div class="fade-in">
+            <a href="#contact" class="btn">Mulai Kolaborasi</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-header fade-in">Tentang Saya</h2>
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <p>Saya beroperasi pada persimpangan antara strategi, sistem, dan penyampaian pesan. Dengan rekam jejak yang melintasi sektor aviasi, pemasaran digital, hingga pengembangan operasional, fokus utama saya adalah merancang solusi yang bekerja.</p>
+                <p>Tidak sekadar memberikan teori, saya membedah masalah menggunakan <span class="highlight">Systems Thinking</span>, menyusun <span class="highlight">Objective & Key Results (OKR)</span>, dan menciptakan ruang belajar yang transformatif.</p>
+                <p>Setiap program pelatihan dan strategi yang saya bangun tidak lahir dari asumsi, melainkan dari pemetaan masalah yang tajam (Six Thinking Hats, Pareto Analysis) untuk eksekusi yang tepat sasaran di era otomasi.</p>
+            </div>
+            <div class="about-stats fade-in">
+                <!-- Covert storytelling area instead of a portrait photo -->
+                <div style="background: #111; padding: 3rem; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent-gold);">Beyond Limits, Adding Value.</h3>
+                    <p style="color: var(--text-muted);">From Flight Plan to Life Plan. Narasi tidak dibangun lewat janji manis, tapi lewat kerangka penyelesaian masalah dan penguasaan operasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-header fade-in">Arsitektur Keahlian</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3 class="skill-title">Corporate Training</h3>
+                <p class="skill-desc">Desain dan fasilitasi program pelatihan perusahaan yang berorientasi pada hasil (MANTRI, eksekutif manajerial) menggunakan metodologi pemecahan masalah empiris.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <h3 class="skill-title">Business Problem Solving</h3>
+                <p class="skill-desc">Diagnosis operasional dan perancangan strategi eksekusi menggunakan framework Six Thinking Hats, Pareto, System Thinking, dan OKR.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <h3 class="skill-title">AI & Automation Workflow</h3>
+                <p class="skill-desc">Integrasi kecerdasan buatan (GPT, Gemini, NotebookLM) dengan ekosistem bisnis (Google Apps Script, presentasi generatif) untuk eskalasi produktivitas.</p>
+            </div>
+            <div class="skill-card fade-in">
+                <h3 class="skill-title">Covert Copywriting</h3>
+                <p class="skill-desc">Penulisan narasi strategis (AIDA framework), soft-selling, dan pengembangan aset personal branding untuk platform edukasi dan komersial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-header fade-in">Jejak Portofolio</h2>
+        <div class="portfolio-list">
+            <div class="portfolio-item fade-in">
+                <div class="port-meta">Corporate Workshop</div>
+                <div class="port-content">
+                    <h3 class="port-title">Personal Branding untuk MANTRI BRI</h3>
+                    <p style="color: var(--text-muted);">Pengembangan dan fasilitasi modul pelatihan eksklusif untuk 80+ partisipan, berfokus pada penguatan kapasitas branding personal agen finansial.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="port-meta">Platform Development</div>
+                <div class="port-content">
+                    <h3 class="port-title">40plus.id & BUCARA Academy</h3>
+                    <p style="color: var(--text-muted);">Arsitek di balik ekosistem e-learning dan dashboard keanggotaan. Merancang struktur logika, desain antarmuka, hingga otomatisasi sistem operasional.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="port-meta">Business Strategy</div>
+                <div class="port-content">
+                    <h3 class="port-title">CHPreneur Execution Blueprint</h3>
+                    <p style="color: var(--text-muted);">Penyusunan business model canvas 90 hari, arsitektur profil identitas, serta perancangan landing page untuk penetrasi pasar konsultasi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-wrapper fade-in">
+            <h2 class="contact-title">Siap Membedah Masalah Anda?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 3rem; font-size: 1.2rem;">Fokus pada pemecahan masalah riil. Konsultasi langsung, tanpa basa-basi.</p>
+            <a href="mailto:contact@domain.com" class="btn">Hubungi Bro Cahya</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
